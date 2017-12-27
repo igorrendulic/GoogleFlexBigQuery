@@ -55,6 +55,9 @@ public class EventServlet extends HttpServlet {
 			//parsing input to event
 			Event event = JSONUtil.jsonToEvent(requestJson);
 			
+			// adding header information (city, region, country)
+			event = augmentEventWithHeaders(event, request);
+			
 			// adding event to big query queue
 			boolean inserted = BigQueryUtil.eventQueue.offer(event);
 			if (!inserted) {
@@ -86,6 +89,19 @@ public class EventServlet extends HttpServlet {
 		response.setStatus(code);
 		ServletOutputStream outStream = response.getOutputStream();
 		outStream.write(JSONUtil.toExceptionJson(message, code).getBytes("utf-8"));
+	}
+	
+	private Event augmentEventWithHeaders(Event event, HttpServletRequest request) {
+		if (event.time == null) {
+			event.time = LocalDateTime.now();
+		}
+		String country = request.getHeader("X-AppEngine-Country");
+		String city = request.getHeader("X-AppEngine-City");
+		String region = request.getHeader("X-AppEngine-Region");
+		event.country = country;
+		event.city = city;
+		event.region = region;
+		return event;
 	}
 
 }

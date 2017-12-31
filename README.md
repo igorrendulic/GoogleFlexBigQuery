@@ -1,6 +1,6 @@
 # Logging REST events in BigQuery
 
-Corresponding article on how to create and visualize REST API call reports: [Corresponding article](https://medium.com/p/579856dea9a9)  
+Corresponding article on how to create and visualize REST API call reports: [Corresponding article](https://medium.com/@igor_98383/analytics-for-restful-interfaces-579856dea9a9)  
 
 
 ## Curl commands for interacting with REST API:

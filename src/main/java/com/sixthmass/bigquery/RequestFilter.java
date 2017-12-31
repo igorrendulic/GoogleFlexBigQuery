@@ -36,7 +36,7 @@ public class RequestFilter implements Filter {
 			event.name = req.getRequestURI();
 			event.time = LocalDateTime.now();
 			event.method = req.getMethod();
-			event.userId = "user_" + (new Random().nextInt(10) + 1);
+			event.userId = "user_" + (new Random().nextInt(1000) + 1);
 			
 			event = augmentEventWithHeaders(event, req);
 			

@@ -40,8 +40,11 @@ public class BigQueryUtil {
 	private static Gson gson = new Gson();
 	private static ExecutorService queueService = Executors.newFixedThreadPool(1);
 	
-	public static final BlockingQueue<Event> eventQueue = new LinkedBlockingQueue<>();
+	public static final BlockingQueue<Event> eventQueue = new LinkedBlockingQueue<>(10000);
 	
+	/**
+	 * Starting our listener for the event queue on server start
+	 */
 	public static void startQueueListener() {
 		Runnable startTask = () -> {
 			try {
@@ -148,7 +151,7 @@ public class BigQueryUtil {
 		
 		StandardTableDefinition tableDefinition = StandardTableDefinition.of(schema);
 		com.google.cloud.bigquery.Table createdTable = bigQuery.create(TableInfo.of(table, tableDefinition));
-		System.out.println("Created table: at" + createdTable.getCreationTime());
+		System.out.println("Created table: at " + createdTable.getCreationTime());
 
 	}
 

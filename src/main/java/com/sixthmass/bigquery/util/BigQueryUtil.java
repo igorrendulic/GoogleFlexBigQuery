@@ -171,7 +171,7 @@ public class BigQueryUtil {
 				
 				eventList.stream().forEach(event -> {
 					try {
-						Map<String, Object> rowData = gson.<Map<String, Object>>fromJson(JSONUtil.eventToJsonString(event), (new HashMap<String, Object>()).getClass());
+						Map<String, Object> rowData = gson.<Map<String, Object>>fromJson(JSONUtil.objectToJsonString(event), (new HashMap<String, Object>()).getClass());
 						rows.add(rowData);
 					} catch (JsonProcessingException e) {
 						e.printStackTrace();

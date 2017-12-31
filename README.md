@@ -2,16 +2,22 @@
 
 
 
-## Curl for sending an event to REST API:
+## Curl commands for interacting with REST API:
  
 ```
-curl -H "Content-Type: application/json" -X POST -d '{"id":"1","userId":"user2","time":"2017-12-25T14:26:50.466"}' http://localhost:8080/api/event
+curl -H "Content-Type: application/json" -X POST -d '{"time":"2017-12-25T14:26:50.466"}' http://localhost:8080/api/ping
 ```
 
-or without time (server modified LocalDateTime to current time): 
+```
+curl -H "Content-Type: application/json" http://localhost:8080/api/ping
+```
 
 ```
-curl -H "Content-Type: application/json" -X POST -d '{"id":"2","userId":"user3"}' http://localhost:8080/api/event
+curl -H "Content-Type: application/json" -X POST -d '{"userName":"Igor"}' http://localhost:8080/api/greeting
+```
+
+```
+curl -H "Content-Type: application/json" http://localhost:8080/api/greeting
 ``` 
 
 ## Deploy to Flex Engine
